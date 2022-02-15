@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import styles from './style.module.scss';
 import { Row, Col, Button } from 'antd';
 import { CurrencySelector, Amount } from '../index';
 import { RiArrowLeftRightFill } from 'react-icons/ri';
+import { currency } from '../../constants/currency';
 
 export default React.memo(() => {
   const [amount, setAmount] = useState(100);
   const [from, setFrom] = useState('AUD');
   const [to, setTo] = useState('USD');
+
+  const prefix = useMemo(() => {
+    return currency.find((c) => c.code === from).symbol;
+  }, [from]);
 
   const onCalculate = (e) => {
     console.log(amount, from, to);
@@ -24,7 +29,11 @@ export default React.memo(() => {
         <Col span={20} offset={2} className={styles.container}>
           <Row>
             <Col span={7}>
-              <Amount prefix="€" onValueChange={setAmount} amount={amount} />
+              <Amount
+                prefix={prefix}
+                onValueChange={setAmount}
+                amount={amount}
+              />
             </Col>
             <Col span={7} offset={1}>
               <CurrencySelector
