@@ -1,0 +1,24 @@
+@import './_variable.scss';
+
+* {
+  box-sizing: border-box;
+
+  padding: 0;
+  margin: 0;
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+:root {
+  font-size: 10px;
+}
+
+html,
+body {
+  color: #162c35;
+  background-color: $theme-200;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

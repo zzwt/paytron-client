@@ -1,0 +1,47 @@
+$white: #fff !default;
+$black: #000 !default;
+$blue: #0d6efd !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #d63384 !default;
+$red: #ba0021 !default;
+$orange: #fd7e14 !default;
+$yellow: #fadb14 !default;
+$green: #52c41a !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+$transparent: rgba(0, 0, 0, 0) !default;
+
+$grey-100: #f8f9fa !default;
+$grey-200: #e9ecef !default;
+$grey-300: #dee2e6 !default;
+$grey-400: #ced4da !default;
+$grey-500: #adb5bd !default;
+$grey-600: #6c757d !default;
+$grey-700: #495057 !default;
+$grey-800: #343a40 !default;
+$grey-900: #212529 !default;
+
+$theme-100: #f1f2f6 !default;
+$theme-200: #457ced !default;
+$theme-300: #5661b6 !default;
+$theme-400: #0f0040 !default;
+
+$font-weight-lighter: 100 !default;
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-bold: 700 !default;
+$font-weight-bolder: 900 !default;
+$font-weight-base: $font-weight-normal !default;
+
+@function hex($hexcolor, $opacity) {
+  $red: red($hexcolor);
+  $green: green($hexcolor);
+  $blue: blue($hexcolor);
+  $alpha: alpha($hexcolor);
+  @if $opacity == 1 or $opacity == 100% {
+    @return unquote('rgba(#{$red},#{$green},#{$blue},#{$alpha})');
+  } @else {
+    @return unquote('rgba(#{$red},#{$green},#{$blue},#{$opacity})');
+  }
+}

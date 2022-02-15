@@ -1,0 +1,14 @@
+@import '../../assets/styles/variable';
+
+.container {
+  position: relative;
+  .title {
+    font-weight: $font-weight-bold;
+    margin-bottom: 0.5rem;
+  }
+  .error {
+    position: absolute;
+    color: $red;
+    top: 6rem;
+  }
+}

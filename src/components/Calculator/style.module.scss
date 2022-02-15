@@ -1,0 +1,29 @@
+@import '../../assets/styles/variable';
+
+.container {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  .icon_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .revert_icon {
+      position: relative;
+      bottom: -1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      border: 1px solid $grey-400;
+      border-radius: 50%;
+      width: 4rem;
+      height: 4rem;
+      cursor: pointer;
+    }
+  }
+  .btn {
+    background-color: $theme-200;
+    margin-top: 3.5rem;
+  }
+}

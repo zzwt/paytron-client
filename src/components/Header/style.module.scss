@@ -1,0 +1,23 @@
+@import '../../assets/styles/variable';
+
+.container {
+  height: 22rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  h1,
+  h3 {
+    color: $white;
+    margin-bottom: 0.5rem;
+  }
+
+  .icon {
+    position: absolute;
+    left: 8.3vw;
+    top: 1rem;
+    font-size: 5rem;
+    color: $white;
+  }
+}
