@@ -1,25 +1,30 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React from 'react';
 import styles from './style.module.scss';
 import { Button, Row, Col } from 'antd';
 import PropTypes from 'prop-types';
+import useCurrency from './useCurrency';
+const Conversion = React.memo(({ amount, rate, from, to }) => {
+  const {
+    fromAmountText,
+    baseRateText,
+    paytronFee,
+    paytronRateText,
+    finalToAmountText,
+  } = useCurrency(amount, rate, from, to);
 
-const Conversion = React.memo(({ amount, rate }) => {
-  // if (isNaN(amount) || rate === null) {
-  //   return <React.Fragment></React.Fragment>;
-  // }
+  if (isNaN(amount) || rate === null) {
+    return <React.Fragment></React.Fragment>;
+  }
+
   return (
     <Row className={styles.container}>
-      {/* <span>{amount}</span>
-      <span>{rate.currencyPair}</span>
-      <span>{rate.midMarketRate}</span> */}
-      {/* offset={8} */}
       <Col sm={16} md={13} lg={10} xl={8} xxl={6}>
         <Row className={styles.from}>
           <Col span={12} className={styles.left}>
             Converting
           </Col>
           <Col span={12} className={styles.right}>
-            $100 USD
+            {fromAmountText}
           </Col>
         </Row>
         <Row className={styles.to}>
@@ -27,7 +32,7 @@ const Conversion = React.memo(({ amount, rate }) => {
             You'll receive
           </Col>
           <Col span={12} className={styles.right}>
-            $13227 AUD
+            {finalToAmountText}
           </Col>
         </Row>
         <Row className={styles.rate_container}>
@@ -39,7 +44,7 @@ const Conversion = React.memo(({ amount, rate }) => {
               Base Rate
             </Col>
             <Col span={12} className={`${styles.right} ${styles.base_rate}`}>
-              $1 USD = $1.4323 AUD
+              {baseRateText}
             </Col>
           </Row>
 
@@ -48,7 +53,7 @@ const Conversion = React.memo(({ amount, rate }) => {
               Paytron Fee
             </Col>
             <Col span={12} className={`${styles.right} ${styles.fee}`}>
-              $3.02 AUD
+              {paytronFee}
             </Col>
           </Row>
           <Row className={`${styles.rate_row} ${styles.highlight}`}>
@@ -56,7 +61,7 @@ const Conversion = React.memo(({ amount, rate }) => {
               Paytron Rate
             </Col>
             <Col span={12} className={styles.right}>
-              $1 USD = $1.3823 AUD
+              {paytronRateText}
             </Col>
           </Row>
         </Row>
@@ -75,6 +80,8 @@ Conversion.defaultProps = {};
 Conversion.propTypes = {
   amount: PropTypes.number,
   rate: PropTypes.object,
+  from: PropTypes.string,
+  to: PropTypes.string,
 };
 
 export default Conversion;

@@ -4,17 +4,17 @@ import { Input } from 'antd';
 import PropTypes from 'prop-types';
 
 const Amount = React.memo(({ title, amount, prefix, onValueChange }) => {
-  const [valueText, setValueText] = useState(amount.toFixed(2));
+  const [valueText, setValueText] = useState(amount?.toFixed(2));
   const [error, setError] = useState(null);
 
   const value = useMemo(() => {
     const newAmount = parseFloat(valueText);
     if (isNaN(newAmount)) {
       setError('Please enter a valid amount');
-      return NaN;
+      return null;
     } else if (parseFloat(newAmount) <= 0) {
       setError('Please enter amount greater than 0');
-      return NaN;
+      return null;
     } else {
       setError(null);
       return newAmount;
@@ -25,7 +25,7 @@ const Amount = React.memo(({ title, amount, prefix, onValueChange }) => {
     if (!error) {
       onValueChange(value);
     } else {
-      onValueChange(NaN);
+      onValueChange(null);
     }
   }, [value, error, onValueChange]);
 
