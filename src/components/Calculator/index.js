@@ -68,18 +68,23 @@ export default React.memo(() => {
               <CurrencySelector title="To" value={to} onValueChange={setTo} />
             </Col>
           </Row>
-          <Button
-            type="primary"
-            className={styles.btn}
-            disabled={amount === null || !from || !to}
-            onClick={onCalculate}
-          >
-            Calculate
-          </Button>
-          <div className={styles.conversion_container}>
-            <Cover loading={loading} />
-            <Conversion amount={amount} rate={rate} from={from} to={to} />
-          </div>
+          {!rate && (
+            <Button
+              type="primary"
+              className={styles.btn}
+              disabled={amount === null || !from || !to}
+              onClick={onCalculate}
+              loading={loading}
+            >
+              Calculate
+            </Button>
+          )}
+          {rate && (
+            <div className={styles.conversion_container}>
+              <Cover loading={loading} />
+              <Conversion amount={amount} rate={rate} from={from} to={to} />
+            </div>
+          )}
         </Col>
       </Row>
     </React.Fragment>
