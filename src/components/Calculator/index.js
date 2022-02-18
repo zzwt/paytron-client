@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import styles from './style.module.scss';
 import { Row, Col, Button } from 'antd';
-import { CurrencySelector, Amount } from '../index';
+import { CurrencySelector, Amount, Conversion } from '../index';
 import { RiArrowLeftRightFill } from 'react-icons/ri';
 import { currency } from '../../constants/currency';
 
@@ -70,6 +70,7 @@ export default React.memo(() => {
           >
             Calculate
           </Button>
+          <Conversion />
         </Col>
       </Row>
     </React.Fragment>
