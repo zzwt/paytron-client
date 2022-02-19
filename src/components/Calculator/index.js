@@ -1,11 +1,26 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import styles from './style.module.scss';
 import { Row, Col, Button } from 'antd';
 import { CurrencySelector, Amount, Conversion } from '../index';
 import { RiArrowLeftRightFill } from 'react-icons/ri';
+import { Transition } from 'react-transition-group';
+import styles from './style.module.scss';
 import { currency } from '../../constants/currency';
 import { getRate } from '../../request';
 import { useRequest } from '../../request/useRequest';
+
+const transitionDuration = 300;
+
+const defaultStyle = {
+  transition: `height ${transitionDuration}ms ease-in-out`,
+  overflow: 'hidden',
+};
+
+const transitionStyles = {
+  entering: { height: 0 },
+  entered: { height: '35.2rem' },
+  exiting: { height: '35.2rem' },
+  exited: { height: 0 },
+};
 
 export default React.memo(() => {
   const [amount, setAmount] = useState(100);
@@ -102,18 +117,30 @@ export default React.memo(() => {
             {error && <div className={styles.error}>{error.message}</div>}
           </Row>
         )}
-        {rate && (
-          <Row className={styles.conversion_container}>
-            <Conversion
-              amount={amount}
-              rate={rate}
-              from={from}
-              to={to}
-              loading={loading}
-              fetchRate={fetchFn}
-            />
-          </Row>
-        )}
+
+        <Transition in={rate !== null} timeout={0}>
+          {(state) => (
+            <div
+              style={{
+                ...defaultStyle,
+                ...transitionStyles[state],
+              }}
+            >
+              {rate && (
+                <Row className={styles.conversion_container}>
+                  <Conversion
+                    amount={amount}
+                    rate={rate}
+                    from={from}
+                    to={to}
+                    loading={loading}
+                    fetchRate={fetchFn}
+                  />
+                </Row>
+              )}
+            </div>
+          )}
+        </Transition>
       </Col>
     </Row>
   );
