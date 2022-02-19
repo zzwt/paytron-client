@@ -24,6 +24,7 @@ export default React.memo(() => {
   );
 
   const onCalculate = () => {
+    setRate(null);
     fetchFn(amount, from, to);
   };
 
@@ -39,6 +40,11 @@ export default React.memo(() => {
     setFrom(to);
     setTo(from);
   };
+
+  useEffect(() => {
+    setRate(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [from, to]);
 
   return (
     <React.Fragment>
@@ -68,23 +74,18 @@ export default React.memo(() => {
               <CurrencySelector title="To" value={to} onValueChange={setTo} />
             </Col>
           </Row>
-          {!rate && (
-            <Button
-              type="primary"
-              className={styles.btn}
-              disabled={amount === null || !from || !to}
-              onClick={onCalculate}
-              loading={loading}
-            >
-              Calculate
-            </Button>
-          )}
-          {rate && (
-            <div className={styles.conversion_container}>
-              <Cover loading={loading} />
-              <Conversion amount={amount} rate={rate} from={from} to={to} />
-            </div>
-          )}
+
+          <Button
+            type="primary"
+            className={styles.btn}
+            disabled={amount === null || !from || !to}
+            onClick={onCalculate}
+            loading={loading}
+          >
+            Calculate
+          </Button>
+
+          <Conversion amount={amount} rate={rate} from={from} to={to} />
         </Col>
       </Row>
     </React.Fragment>
