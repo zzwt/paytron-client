@@ -9,7 +9,8 @@ export const getRate = async (amount, from, to) => {
       `${url}?Sell=${from}&Buy=${to}&Amount=${amount}&Fixed=sell`
     );
     const { currencyPair, midMarketRate } = res.data;
-
+    if (!midMarketRate || !currencyPair)
+      throw new Error('Rate not available. Please try later. ');
     return { currencyPair, midMarketRate };
   } catch (error) {
     console.error('Fetching rate error:', error);

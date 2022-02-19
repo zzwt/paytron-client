@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import styles from './style.module.scss';
 import { Row, Col, Button } from 'antd';
-import { CurrencySelector, Amount, Conversion, Cover } from '../index';
+import { CurrencySelector, Amount, Conversion } from '../index';
 import { RiArrowLeftRightFill } from 'react-icons/ri';
 import { currency } from '../../constants/currency';
 import { getRate } from '../../request';
@@ -74,15 +74,18 @@ export default React.memo(() => {
               <CurrencySelector title="To" value={to} onValueChange={setTo} />
             </Col>
           </Row>
-          <Button
-            type="primary"
-            className={styles.btn}
-            disabled={amount === null || !from || !to || from === to}
-            onClick={onCalculate}
-            loading={loading}
-          >
-            Calculate
-          </Button>
+          <Row className={styles.btn_container}>
+            <Button
+              type="primary"
+              className={styles.btn}
+              disabled={amount === null || !from || !to || from === to}
+              onClick={onCalculate}
+              loading={loading}
+            >
+              Calculate
+            </Button>
+            {error && <div className={styles.error}>{error.message}</div>}
+          </Row>
           <Conversion amount={amount} rate={rate} from={from} to={to} />
         </Col>
       </Row>
