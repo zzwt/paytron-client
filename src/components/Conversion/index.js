@@ -25,7 +25,7 @@ const Conversion = React.memo(
     }
 
     return (
-      <Col md={16} lg={14} xl={10} xxl={8} className={styles.container}>
+      <Col className={styles.container}>
         {loading && <Cover />}
         <Row className={styles.conversion}>
           <Row className={styles.from}>

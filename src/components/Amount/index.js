@@ -41,8 +41,11 @@ const Amount = React.memo(({ title, amount, prefix, onValueChange }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>{title}</div>
-      {error && <div className={styles.error}>{error}</div>}
+      <div className={styles.title}>
+        {title}
+        {error && <span className={styles.error}>{error}</span>}
+      </div>
+
       <div>
         <Input
           prefix={prefix}

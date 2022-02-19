@@ -50,35 +50,41 @@ export default React.memo(() => {
   };
 
   return (
-    <React.Fragment>
-      <Row>
-        <Col span={20} offset={2} className={styles.container}>
-          <Row>
-            <Col span={7}>
-              <Amount
-                prefix={prefix}
-                onValueChange={setAmount}
-                amount={amount}
-              />
-            </Col>
-            <Col span={7} offset={1}>
-              <CurrencySelector
-                title="From"
-                value={from}
-                onValueChange={setFrom}
-              />
-            </Col>
-            <Col span={2} className={styles.icon_container}>
-              <div className={styles.revert_icon} onClick={swapCurrency}>
-                <RiArrowLeftRightFill />
-              </div>
-            </Col>
-            <Col span={7}>
-              <CurrencySelector title="To" value={to} onValueChange={setTo} />
-            </Col>
-          </Row>
-          {(!rate || error) && (
-            <Row className={styles.btn_container}>
+    <Row className={styles.container}>
+      <Col
+        xs={22}
+        sm={20}
+        md={14}
+        lg={12}
+        xl={10}
+        xxl={8}
+        className={styles.calculator}
+      >
+        <Row className={styles.row}>
+          <Col span={24}>
+            <Amount prefix={prefix} onValueChange={setAmount} amount={amount} />
+          </Col>
+        </Row>
+        <Row className={styles.row}>
+          <Col span={10}>
+            <CurrencySelector
+              title="From"
+              value={from}
+              onValueChange={setFrom}
+            />
+          </Col>
+          <Col span={4} className={styles.icon_container}>
+            <div className={styles.revert_icon} onClick={swapCurrency}>
+              <RiArrowLeftRightFill />
+            </div>
+          </Col>
+          <Col span={10}>
+            <CurrencySelector title="To" value={to} onValueChange={setTo} />
+          </Col>
+        </Row>
+        {(!rate || error) && (
+          <Row className={`${styles.btn_container} ${styles.row}`}>
+            <Col span={24}>
               <Button
                 type="primary"
                 className={styles.btn}
@@ -88,23 +94,23 @@ export default React.memo(() => {
               >
                 Calculate
               </Button>
-              {error && <div className={styles.error}>{error.message}</div>}
-            </Row>
-          )}
-          {rate && (
-            <Row className={styles.conversion_container}>
-              <Conversion
-                amount={amount}
-                rate={rate}
-                from={from}
-                to={to}
-                loading={loading}
-                fetchRate={fetchFn}
-              />
-            </Row>
-          )}
-        </Col>
-      </Row>
-    </React.Fragment>
+            </Col>
+            {error && <div className={styles.error}>{error.message}</div>}
+          </Row>
+        )}
+        {rate && (
+          <Row className={styles.conversion_container}>
+            <Conversion
+              amount={amount}
+              rate={rate}
+              from={from}
+              to={to}
+              loading={loading}
+              fetchRate={fetchFn}
+            />
+          </Row>
+        )}
+      </Col>
+    </Row>
   );
 });

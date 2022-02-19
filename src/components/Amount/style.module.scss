@@ -7,8 +7,9 @@
     margin-bottom: 0.5rem;
   }
   .error {
-    position: absolute;
+    display: inline-block;
+    margin-left: 1rem;
     color: $red;
-    top: 6rem;
+    z-index: 100;
   }
 }
