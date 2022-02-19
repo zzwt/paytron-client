@@ -2,17 +2,17 @@ import React, { useState, useMemo, useEffect } from 'react';
 import styles from './style.module.scss';
 import { Input } from 'antd';
 import PropTypes from 'prop-types';
-
+import { toCurrency, currencyToNum } from '../../utils';
 const Amount = React.memo(({ title, amount, prefix, onValueChange }) => {
-  const [valueText, setValueText] = useState(amount?.toFixed(2));
+  const [valueText, setValueText] = useState(toCurrency(amount));
   const [error, setError] = useState(null);
 
   const value = useMemo(() => {
-    const newAmount = parseFloat(valueText);
+    const newAmount = currencyToNum(valueText);
     if (isNaN(newAmount)) {
       setError('Please enter a valid amount');
       return null;
-    } else if (parseFloat(newAmount) <= 0) {
+    } else if (newAmount <= 0) {
       setError('Please enter amount greater than 0');
       return null;
     } else {
@@ -35,7 +35,7 @@ const Amount = React.memo(({ title, amount, prefix, onValueChange }) => {
 
   const onBlur = (e) => {
     if (!error) {
-      setValueText(value.toFixed(2));
+      setValueText(toCurrency(value));
     }
   };
 

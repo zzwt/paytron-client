@@ -31,10 +31,10 @@ const Conversion = React.memo(
         {loading && <Cover />}
         <Row className={styles.conversion}>
           <Row className={styles.from}>
-            <Col span={12} className={styles.left}>
+            <Col span={8} className={styles.left}>
               Converting
             </Col>
-            <Col span={12} className={styles.right}>
+            <Col span={16} className={styles.right}>
               {fromAmountText}
             </Col>
           </Row>

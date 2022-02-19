@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { getCurrencySymbol } from '../../utils';
+import { getCurrencySymbol, toCurrency } from '../../utils';
 export default function useCurrency(fromAmount, rate, from, to) {
   const baseRate = useMemo(() => {
     if (!rate) return 0;
@@ -13,7 +13,7 @@ export default function useCurrency(fromAmount, rate, from, to) {
   const toSymbol = useMemo(() => getCurrencySymbol(to), [to]);
 
   const fromAmountText = useMemo(
-    () => `${fromSymbol}${fromAmount} ${from}`,
+    () => `${fromSymbol}${toCurrency(fromAmount)} ${from}`,
     [fromSymbol, fromAmount, from]
   );
 
@@ -23,7 +23,7 @@ export default function useCurrency(fromAmount, rate, from, to) {
   );
 
   const paytronFee = useMemo(
-    () => `${toSymbol}${(fromAmount * baseRate * 0.005).toFixed(2)} ${to}`,
+    () => `${toSymbol}${toCurrency(fromAmount * baseRate * 0.005)} ${to}`,
     [fromAmount, baseRate, toSymbol, to]
   );
 
@@ -36,7 +36,7 @@ export default function useCurrency(fromAmount, rate, from, to) {
   );
 
   const finalToAmountText = useMemo(
-    () => `${toSymbol}${(fromAmount * baseRate * 0.995).toFixed(2)} ${to}`,
+    () => `${toSymbol}${toCurrency(fromAmount * baseRate * 0.995)} ${to}`,
     [toSymbol, fromAmount, baseRate, to]
   );
 
