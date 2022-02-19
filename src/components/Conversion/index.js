@@ -95,7 +95,7 @@ Conversion.propTypes = {
   from: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
   loading: PropTypes.bool,
-  fetchRate: PropTypes.function,
+  fetchRate: PropTypes.func,
 };
 
 export default Conversion;

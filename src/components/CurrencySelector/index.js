@@ -62,7 +62,7 @@ CurrencySelector.defaultProps = {
 CurrencySelector.propTypes = {
   title: PropTypes.string,
   value: PropTypes.string,
-  onValueChange: PropTypes.function,
+  onValueChange: PropTypes.func,
 };
 
 export default CurrencySelector;

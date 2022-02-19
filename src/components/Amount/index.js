@@ -68,7 +68,7 @@ Amount.propTypes = {
   prefix: PropTypes.string,
   title: PropTypes.string,
   amount: PropTypes.number,
-  onValueChange: PropTypes.function,
+  onValueChange: PropTypes.func,
 };
 
 export default Amount;
