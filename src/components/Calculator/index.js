@@ -44,6 +44,10 @@ export default React.memo(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [from, to]);
 
+  useEffect(() => {
+    if (!amount) setRate(null);
+  }, [amount]);
+
   const swapCurrency = () => {
     setFrom(to);
     setTo(from);
@@ -82,7 +86,7 @@ export default React.memo(() => {
             <CurrencySelector title="To" value={to} onValueChange={setTo} />
           </Col>
         </Row>
-        {(!rate || error) && (
+        {(!rate || error || !amount) && (
           <Row className={`${styles.btn_container} ${styles.row}`}>
             <Col span={24}>
               <Button
