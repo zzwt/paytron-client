@@ -3,7 +3,7 @@
 .container {
   background: $white;
   border-radius: 0.5rem;
-  padding: 2rem;
+  padding: 3rem;
   .icon_container {
     display: flex;
     align-items: center;
@@ -22,11 +22,12 @@
       cursor: pointer;
     }
   }
+
   .btn {
     background-color: $theme-200;
     margin-top: 3.5rem;
-  }
-  .conversion_container {
-    position: relative;
+    &:disabled {
+      background-color: #f5f5f5;
+    }
   }
 }

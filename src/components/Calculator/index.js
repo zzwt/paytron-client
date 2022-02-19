@@ -36,15 +36,15 @@ export default React.memo(() => {
     }
   }, [data, error]);
 
-  const swapCurrency = () => {
-    setFrom(to);
-    setTo(from);
-  };
-
   useEffect(() => {
     setRate(null);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [from, to]);
+
+  const swapCurrency = () => {
+    setFrom(to);
+    setTo(from);
+  };
 
   return (
     <React.Fragment>
@@ -74,17 +74,15 @@ export default React.memo(() => {
               <CurrencySelector title="To" value={to} onValueChange={setTo} />
             </Col>
           </Row>
-
           <Button
             type="primary"
             className={styles.btn}
-            disabled={amount === null || !from || !to}
+            disabled={amount === null || !from || !to || from === to}
             onClick={onCalculate}
             loading={loading}
           >
             Calculate
           </Button>
-
           <Conversion amount={amount} rate={rate} from={from} to={to} />
         </Col>
       </Row>
