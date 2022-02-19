@@ -60,7 +60,12 @@ export default React.memo(() => {
   }, [from, to]);
 
   useEffect(() => {
-    if (!amount) setRate(null);
+    if (!amount) {
+      setRate(null);
+      if (loading) {
+        cancelRequest();
+      }
+    }
   }, [amount]);
 
   const swapCurrency = () => {
