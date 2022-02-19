@@ -23,8 +23,8 @@ export default function useCurrency(fromAmount, rate, from, to) {
   );
 
   const paytronFee = useMemo(
-    () => `${toSymbol}${(fromAmount * 0.005).toFixed(2)} ${to}`,
-    [fromAmount, toSymbol, to]
+    () => `${toSymbol}${(fromAmount * baseRate * 0.005).toFixed(2)} ${to}`,
+    [fromAmount, baseRate, toSymbol, to]
   );
 
   const paytronRateText = useMemo(
