@@ -6,6 +6,8 @@ import useCurrency from './useCurrency';
 import Cover from '../Cover';
 import { useInterval } from './useInterval';
 
+const REFRESH_INTERVAL = 30000;
+
 const Conversion = React.memo(
   ({ amount, rate, from, to, loading, fetchRate }) => {
     const {
@@ -18,7 +20,7 @@ const Conversion = React.memo(
 
     useInterval(() => {
       fetchRate && fetchRate(amount, from, to);
-    }, 30000);
+    }, REFRESH_INTERVAL);
 
     if (isNaN(amount) || rate === null) {
       return <React.Fragment></React.Fragment>;
