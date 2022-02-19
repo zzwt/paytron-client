@@ -3,7 +3,7 @@
 .container {
   background: $white;
   border-radius: 0.5rem;
-  padding: 3rem;
+  padding: 1.5rem;
   .icon_container {
     display: flex;
     align-items: center;
@@ -37,5 +37,9 @@
       left: 0rem;
       top: 7rem;
     }
+  }
+  .conversion_container {
+    display: flex;
+    justify-content: center;
   }
 }

@@ -3,85 +3,99 @@ import styles from './style.module.scss';
 import { Button, Row, Col } from 'antd';
 import PropTypes from 'prop-types';
 import useCurrency from './useCurrency';
-const Conversion = React.memo(({ amount, rate, from, to }) => {
-  const {
-    fromAmountText,
-    baseRateText,
-    paytronFee,
-    paytronRateText,
-    finalToAmountText,
-  } = useCurrency(amount, rate, from, to);
+import Cover from '../Cover';
+import { useInterval } from './useInterval';
 
-  if (isNaN(amount) || rate === null) {
-    return <React.Fragment></React.Fragment>;
-  }
+const Conversion = React.memo(
+  ({ amount, rate, from, to, loading, fetchRate }) => {
+    const {
+      fromAmountText,
+      baseRateText,
+      paytronFee,
+      paytronRateText,
+      finalToAmountText,
+    } = useCurrency(amount, rate, from, to);
 
-  return (
-    <Row className={styles.container}>
-      <Col sm={16} md={13} lg={10} xl={8} xxl={6}>
-        <Row className={styles.from}>
-          <Col span={12} className={styles.left}>
-            Converting
-          </Col>
-          <Col span={12} className={styles.right}>
-            {fromAmountText}
-          </Col>
-        </Row>
-        <Row className={styles.to}>
-          <Col span={12} className={styles.left}>
-            You'll receive
-          </Col>
-          <Col span={12} className={styles.right}>
-            {finalToAmountText}
-          </Col>
-        </Row>
-        <Row className={styles.rate_container}>
-          <Row className={`${styles.rate_row} ${styles.rate_label} `}>
-            Rate & Fee
-          </Row>
-          <Row className={styles.rate_row}>
-            <Col span={12} className={`${styles.left}`}>
-              Base Rate
-            </Col>
-            <Col span={12} className={`${styles.right} ${styles.base_rate}`}>
-              {baseRateText}
-            </Col>
-          </Row>
+    useInterval(() => {
+      fetchRate && fetchRate(amount, from, to);
+    }, 30000);
 
-          <Row className={styles.rate_row}>
-            <Col span={12} className={`${styles.left} `}>
-              Paytron Fee
-            </Col>
-            <Col span={12} className={`${styles.right} ${styles.fee}`}>
-              {paytronFee}
-            </Col>
-          </Row>
-          <Row className={`${styles.rate_row} ${styles.highlight}`}>
+    if (isNaN(amount) || rate === null) {
+      return <React.Fragment></React.Fragment>;
+    }
+
+    return (
+      <Col md={16} lg={14} xl={10} xxl={8} className={styles.container}>
+        {loading && <Cover />}
+        <Row className={styles.conversion}>
+          <Row className={styles.from}>
             <Col span={12} className={styles.left}>
-              Paytron Rate
+              Converting
             </Col>
             <Col span={12} className={styles.right}>
-              {paytronRateText}
+              {fromAmountText}
             </Col>
           </Row>
-        </Row>
-        <Row justify="center">
-          <Button type="primary" className={styles.btn} onClick={() => {}}>
-            Convert Now
-          </Button>
+          <Row className={styles.to}>
+            <Col span={12} className={styles.left}>
+              You'll receive
+            </Col>
+            <Col span={12} className={styles.right}>
+              {finalToAmountText}
+            </Col>
+          </Row>
+          <Row className={styles.rate_container}>
+            <Row className={`${styles.rate_row} ${styles.rate_label} `}>
+              Rate & Fee
+            </Row>
+            <Row className={styles.rate_row}>
+              <Col span={12} className={`${styles.left}`}>
+                Base Rate
+              </Col>
+              <Col span={12} className={`${styles.right} ${styles.base_rate}`}>
+                {baseRateText}
+              </Col>
+            </Row>
+
+            <Row className={styles.rate_row}>
+              <Col span={12} className={`${styles.left} `}>
+                Paytron Fee
+              </Col>
+              <Col span={12} className={`${styles.right} ${styles.fee}`}>
+                {paytronFee}
+              </Col>
+            </Row>
+            <Row className={`${styles.rate_row} ${styles.highlight}`}>
+              <Col span={12} className={styles.left}>
+                Paytron Rate
+              </Col>
+              <Col span={12} className={styles.right}>
+                {paytronRateText}
+              </Col>
+            </Row>
+          </Row>
+          <Row className={styles.btn_container}>
+            <Button type="primary" className={styles.btn} onClick={() => {}}>
+              Convert Now
+            </Button>
+          </Row>
         </Row>
       </Col>
-    </Row>
-  );
-});
+    );
+  }
+);
 
-Conversion.defaultProps = {};
+Conversion.defaultProps = {
+  loading: false,
+};
 
 Conversion.propTypes = {
-  amount: PropTypes.number,
-  rate: PropTypes.object,
-  from: PropTypes.string,
-  to: PropTypes.string,
+  amount: PropTypes.number.isRequired,
+  rate: PropTypes.object.isRequired,
+  from: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+  loading: PropTypes.bool,
+  fetchRate: PropTypes.function,
 };
 
 export default Conversion;

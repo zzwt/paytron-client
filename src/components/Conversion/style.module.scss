@@ -1,68 +1,69 @@
 @import '../../assets/styles/variable';
 
 .container {
-  display: flex;
-  justify-content: center;
-  padding: 2rem 4rem;
-  .detail_value {
-    text-align: right;
-  }
+  position: relative;
+  .conversion {
+    padding: 2rem 2rem;
+    .from {
+      width: 100%;
+      font-weight: $font-weight-normal;
+      font-size: 2rem;
+      color: $grey-600;
+      padding: 1rem 2rem;
+      border-radius: 0.7rem;
+      border: 1px solid $grey-300;
+    }
+    .left {
+      text-align: left;
+      font-weight: $font-weight-bold;
+    }
+    .right {
+      text-align: right;
+    }
+    .to {
+      margin-top: 1rem;
+      width: 100%;
+      background: #457ced;
+      color: white;
+      font-weight: $font-weight-normal;
+      font-size: 2rem;
+      padding: 1rem 2rem;
+      border-radius: 0.7rem;
+    }
 
-  .from {
-    width: 100%;
-    font-weight: $font-weight-normal;
-    font-size: 2rem;
-    color: $grey-600;
-    padding: 1rem 2rem;
-    border-radius: 0.7rem;
-    border: 1px solid $grey-300;
-  }
-  .left {
-    text-align: left;
-    font-weight: $font-weight-bold;
-  }
-  .right {
-    text-align: right;
-  }
-  .to {
-    margin-top: 1rem;
-    width: 100%;
-    background: #457ced;
-    color: white;
-    font-weight: $font-weight-normal;
-    font-size: 2rem;
-    padding: 1rem 2rem;
-    border-radius: 0.7rem;
-  }
+    .rate_container {
+      margin-top: 1rem;
+      padding: 1rem 2rem;
+    }
 
-  .rate_container {
-    margin-top: 1rem;
-    padding: 1rem 2rem;
-  }
+    .rate_row {
+      height: 3rem;
+      width: 100%;
+      color: $grey-500;
+    }
+    .rate_label {
+      width: 100%;
+      color: $grey-600;
+      font-weight: $font-weight-bold;
+    }
 
-  .rate_row {
-    height: 3rem;
-    width: 100%;
-    color: $grey-500;
-  }
-  .rate_label {
-    width: 100%;
-    color: $grey-600;
-    font-weight: $font-weight-bold;
-  }
+    .base_rate,
+    .fee {
+      color: $grey-600;
+    }
 
-  .base_rate,
-  .fee {
-    color: $grey-600;
-  }
-
-  .highlight {
-    font-weight: $font-weight-bold;
-    color: $theme-400;
-  }
-
-  .btn {
-    background-color: $theme-200;
-    margin-top: 1.5rem;
+    .highlight {
+      font-weight: $font-weight-bold;
+      color: $theme-400;
+    }
+    .btn_container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      .btn {
+        background-color: $theme-200;
+        margin-top: 1.5rem;
+      }
+    }
   }
 }

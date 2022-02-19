@@ -13,7 +13,7 @@ export default React.memo(() => {
   const [to, setTo] = useState('USD');
   const [rate, setRate] = useState(null);
 
-  const { loading, error, data, fetchFn } = useRequest(getRate);
+  const { loading, error, data, fetchFn, cancelRequest } = useRequest(getRate);
 
   const prefix = useMemo(
     () =>
@@ -38,6 +38,9 @@ export default React.memo(() => {
 
   useEffect(() => {
     setRate(null);
+    if (loading) {
+      cancelRequest();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [from, to]);
 
@@ -74,19 +77,32 @@ export default React.memo(() => {
               <CurrencySelector title="To" value={to} onValueChange={setTo} />
             </Col>
           </Row>
-          <Row className={styles.btn_container}>
-            <Button
-              type="primary"
-              className={styles.btn}
-              disabled={amount === null || !from || !to || from === to}
-              onClick={onCalculate}
-              loading={loading}
-            >
-              Calculate
-            </Button>
-            {error && <div className={styles.error}>{error.message}</div>}
-          </Row>
-          <Conversion amount={amount} rate={rate} from={from} to={to} />
+          {(!rate || error) && (
+            <Row className={styles.btn_container}>
+              <Button
+                type="primary"
+                className={styles.btn}
+                disabled={amount === null || !from || !to || from === to}
+                onClick={onCalculate}
+                loading={loading}
+              >
+                Calculate
+              </Button>
+              {error && <div className={styles.error}>{error.message}</div>}
+            </Row>
+          )}
+          {rate && (
+            <Row className={styles.conversion_container}>
+              <Conversion
+                amount={amount}
+                rate={rate}
+                from={from}
+                to={to}
+                loading={loading}
+                fetchRate={fetchFn}
+              />
+            </Row>
+          )}
         </Col>
       </Row>
     </React.Fragment>
