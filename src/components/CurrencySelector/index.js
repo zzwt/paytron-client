@@ -6,10 +6,6 @@ import 'flag-icons/css/flag-icons.min.css';
 import PropTypes from 'prop-types';
 
 const CurrencySelector = React.memo(({ title, value, onValueChange }) => {
-  function onChange(value) {
-    onValueChange(value);
-  }
-
   const renderCurrencies = () => {
     return currency.map((c) => {
       return (
@@ -36,7 +32,7 @@ const CurrencySelector = React.memo(({ title, value, onValueChange }) => {
           placeholder="Type to Search"
           optionFilterProp="children"
           value={value}
-          onChange={onChange}
+          onChange={onValueChange}
           style={{ width: '100%' }}
           filterOption={(input, option) =>
             option.children[1].toLowerCase().indexOf(input.toLowerCase()) >= 0

@@ -66,6 +66,7 @@ export default React.memo(() => {
         cancelRequest();
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [amount]);
 
   const swapCurrency = () => {
