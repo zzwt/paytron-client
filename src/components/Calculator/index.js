@@ -43,14 +43,13 @@ export default React.memo(() => {
     fetchFn(amount, from, to);
   };
 
+  // If rate fetched or error returned, update rate
   useEffect(() => {
-    if (error) {
-      setRate(null);
-    } else {
-      setRate(data);
-    }
-  }, [data, error]);
+    if (!loading && error) setRate(null);
+    if (!loading && data) setRate(data);
+  }, [loading, data, error]);
 
+  // If source or target changes, remove current rate
   useEffect(() => {
     setRate(null);
     if (loading) {
@@ -59,6 +58,7 @@ export default React.memo(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [from, to]);
 
+  // If enter an invalid amount ,remove current rate
   useEffect(() => {
     if (!amount) {
       setRate(null);

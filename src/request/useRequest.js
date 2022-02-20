@@ -11,6 +11,7 @@ export const useRequest = (fn) => {
       try {
         setLoading(true);
         setError(null);
+        setData(null);
         const response = await fn(...args);
         // If the source or target change during fetch, discard result.
         if (!cancel.current) {
