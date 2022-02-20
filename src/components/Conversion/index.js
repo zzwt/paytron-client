@@ -25,7 +25,6 @@ const Conversion = React.memo(
     if (isNaN(amount) || rate === null) {
       return <React.Fragment></React.Fragment>;
     }
-
     return (
       <Col className={styles.container}>
         {loading && <Cover />}
@@ -39,10 +38,10 @@ const Conversion = React.memo(
             </Col>
           </Row>
           <Row className={styles.to}>
-            <Col span={12} className={styles.left}>
+            <Col span={8} className={styles.left}>
               You'll receive
             </Col>
-            <Col span={12} className={styles.right}>
+            <Col span={16} className={styles.right}>
               {finalToAmountText}
             </Col>
           </Row>
@@ -51,27 +50,27 @@ const Conversion = React.memo(
               Rate & Fee
             </Row>
             <Row className={styles.rate_row}>
-              <Col span={12} className={`${styles.left}`}>
+              <Col span={8} className={`${styles.left}`}>
                 Base Rate
               </Col>
-              <Col span={12} className={`${styles.right} ${styles.base_rate}`}>
+              <Col span={16} className={`${styles.right} ${styles.base_rate}`}>
                 {baseRateText}
               </Col>
             </Row>
 
             <Row className={styles.rate_row}>
-              <Col span={12} className={`${styles.left} `}>
+              <Col span={8} className={`${styles.left} `}>
                 Paytron Fee
               </Col>
-              <Col span={12} className={`${styles.right} ${styles.fee}`}>
+              <Col span={16} className={`${styles.right} ${styles.fee}`}>
                 {paytronFee}
               </Col>
             </Row>
             <Row className={`${styles.rate_row} ${styles.highlight}`}>
-              <Col span={12} className={styles.left}>
+              <Col span={8} className={styles.left}>
                 Paytron Rate
               </Col>
-              <Col span={12} className={styles.right}>
+              <Col span={16} className={styles.right}>
                 {paytronRateText}
               </Col>
             </Row>

@@ -15,6 +15,8 @@ const Amount = React.memo(({ title, amount, prefix, onValueChange }) => {
     } else if (newAmount <= 0) {
       setError('Please enter amount greater than 0');
       return null;
+    } else if (newAmount > Number.MAX_SAFE_INTEGER) {
+      return 1.0;
     } else {
       setError(null);
       return newAmount;
