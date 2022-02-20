@@ -7,7 +7,7 @@
   .calculator {
     background: $white;
     border-radius: 0.5rem;
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 3rem 1.5rem;
     margin-bottom: 4rem;
     .row {
       margin: 1rem 0;
@@ -45,8 +45,9 @@
       .error {
         position: absolute;
         color: $red;
-        left: 0rem;
-        top: 7rem;
+        left: 50%;
+        top: 3.5rem;
+        transform: translateX(-50%);
       }
     }
 
