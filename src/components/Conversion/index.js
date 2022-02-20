@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './style.module.scss';
 import { Button, Row, Col } from 'antd';
 import PropTypes from 'prop-types';
-import useCurrency from './useCurrency';
+import useCurrency from './useConversion';
 import Cover from '../Cover';
 import { useInterval } from './useInterval';
 
@@ -13,7 +13,7 @@ const Conversion = React.memo(
     const {
       fromAmountText,
       baseRateText,
-      paytronFee,
+      paytronFeeText,
       paytronRateText,
       finalToAmountText,
     } = useCurrency(amount, rate, from, to);
@@ -63,7 +63,7 @@ const Conversion = React.memo(
                 Paytron Fee
               </Col>
               <Col span={16} className={`${styles.right} ${styles.fee}`}>
-                {paytronFee}
+                {paytronFeeText}
               </Col>
             </Row>
             <Row className={`${styles.rate_row} ${styles.highlight}`}>

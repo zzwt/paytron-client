@@ -17,3 +17,7 @@ export const toCurrency = (num) => {
 export const currencyToNum = (c) => {
   return parseFloat(c.replace(/[,]+/g, ''));
 };
+
+export const round = (num, places) => {
+  return +(Math.round(num + 'e+' + places) + 'e-' + places);
+};
