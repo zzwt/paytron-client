@@ -29,6 +29,7 @@ export const useRequest = (fn) => {
 
   const cancelRequest = useCallback(() => {
     cancel.current = true;
+    setLoading(false);
   }, []);
 
   return { loading, error, data, fetchFn, cancelRequest };
