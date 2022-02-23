@@ -9,7 +9,11 @@ const CurrencySelector = React.memo(({ title, value, onValueChange }) => {
   const renderCurrencies = () => {
     return currency.map((c) => {
       return (
-        <Select.Option key={c.code + title} value={c.code}>
+        <Select.Option
+          key={c.code + title}
+          value={c.code}
+          data-testid={`${c.code}`}
+        >
           <span
             style={{
               display: 'inline-block',
@@ -37,6 +41,7 @@ const CurrencySelector = React.memo(({ title, value, onValueChange }) => {
           filterOption={(input, option) =>
             option.children[1].toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
+          data-testid="selector"
         >
           {renderCurrencies()}
         </Select>
