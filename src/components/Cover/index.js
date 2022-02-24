@@ -5,7 +5,7 @@ import Spinner from '../../assets/images/spinner.gif';
 
 const Cover = React.memo(() => {
   return (
-    <Row className={styles.cover}>
+    <Row className={styles.cover} data-testid="cover">
       <img src={Spinner} alt="spiner" className={styles.spinner} />
     </Row>
   );

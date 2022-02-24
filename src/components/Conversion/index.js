@@ -26,10 +26,10 @@ const Conversion = React.memo(
       return <React.Fragment></React.Fragment>;
     }
     return (
-      <Col className={styles.container}>
+      <Col className={styles.container} data-testid="conversion">
         {loading && <Cover />}
         <Row className={styles.conversion}>
-          <Row className={styles.from}>
+          <Row className={styles.from} data-testid="source">
             <Col span={8} className={styles.left}>
               Converting
             </Col>
@@ -37,7 +37,7 @@ const Conversion = React.memo(
               {fromAmountText}
             </Col>
           </Row>
-          <Row className={styles.to}>
+          <Row className={styles.to} data-testid="target">
             <Col span={8} className={styles.left}>
               You'll receive
             </Col>
@@ -49,7 +49,7 @@ const Conversion = React.memo(
             <Row className={`${styles.rate_row} ${styles.rate_label} `}>
               Rate & Fee
             </Row>
-            <Row className={styles.rate_row}>
+            <Row className={styles.rate_row} data-testid="base-rate">
               <Col span={8} className={`${styles.left}`}>
                 Base Rate
               </Col>
@@ -58,7 +58,7 @@ const Conversion = React.memo(
               </Col>
             </Row>
 
-            <Row className={styles.rate_row}>
+            <Row className={styles.rate_row} data-testid="fee">
               <Col span={8} className={`${styles.left} `}>
                 Paytron Fee
               </Col>
@@ -66,7 +66,10 @@ const Conversion = React.memo(
                 {paytronFeeText}
               </Col>
             </Row>
-            <Row className={`${styles.rate_row} ${styles.highlight}`}>
+            <Row
+              className={`${styles.rate_row} ${styles.highlight}`}
+              data-testid="paytron-rate"
+            >
               <Col span={8} className={styles.left}>
                 Paytron Rate
               </Col>

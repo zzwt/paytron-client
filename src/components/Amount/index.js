@@ -42,10 +42,14 @@ const Amount = React.memo(({ title, amount, prefix, onValueChange }) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="amount-container">
       <div className={styles.title}>
         {title}
-        {error && <span className={styles.error}>{error}</span>}
+        {error && (
+          <span className={styles.error} data-testid="error">
+            {error}
+          </span>
+        )}
       </div>
 
       <div>
@@ -54,6 +58,7 @@ const Amount = React.memo(({ title, amount, prefix, onValueChange }) => {
           value={valueText}
           onChange={onChange}
           onBlur={onBlur}
+          data-testid="amount"
         />
       </div>
     </div>

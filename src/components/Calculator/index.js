@@ -99,7 +99,11 @@ export default React.memo(() => {
             />
           </Col>
           <Col span={4} className={styles.icon_container}>
-            <div className={styles.revert_icon} onClick={swapCurrency}>
+            <div
+              className={styles.revert_icon}
+              onClick={swapCurrency}
+              data-testId="swap"
+            >
               <RiArrowLeftRightFill />
             </div>
           </Col>
@@ -120,7 +124,11 @@ export default React.memo(() => {
                 Calculate
               </Button>
             </Col>
-            {error && <div className={styles.error}>{error.message}</div>}
+            {error && (
+              <div className={styles.error} data-testid="fetch-error">
+                {error.message}
+              </div>
+            )}
           </Row>
         )}
 
